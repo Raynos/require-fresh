@@ -1,15 +1,17 @@
 {
   "name": "require-fresh",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ensure require stays fresh for an entire directory",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
   "repository": "git://github.com/Raynos/require-fresh.git",
   "main": "index",
   "homepage": "https://github.com/Raynos/require-fresh",
-  "contributors": [{
-    "name": "Raynos"
-  }],
+  "contributors": [
+    {
+      "name": "Raynos"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/Raynos/require-fresh/issues",
     "email": "raynos2@gmail.com"
@@ -18,10 +20,12 @@
   "devDependencies": {
     "tape": "~1.0.2"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "http://github.com/Raynos/require-fresh/raw/master/LICENSE"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/require-fresh/raw/master/LICENSE"
+    }
+  ],
   "scripts": {
     "test": "node ./test/index.js"
   },
