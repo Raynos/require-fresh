@@ -55,6 +55,12 @@ function requireFresh(opts) {
         })
     }
 
+    req.close = function () {
+        if (monitor) {
+            monitor.destroy()
+        }
+    }
+
     return req
 
     function req(uri) {
