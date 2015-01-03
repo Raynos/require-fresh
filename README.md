@@ -18,10 +18,11 @@ var NODE_ENV = require("node-env")
 
 var loadTemplate = require("require-fresh")({
     dir: path.join(__dirname, "templates"),
-    watch: NODE_ENV !== "production"
+    watch: false,
+    force: true
 })
 
-var templ = loadTemplate("./main.js")
+var templ = loadTemplate("./main.js", { fresh: true })
 ```
 
 ## Installation
