@@ -17,9 +17,10 @@
     "email": "raynos2@gmail.com"
   },
   "dependencies": {
-    "yawatch": "~0.2.4",
+    "fs-readdir-recursive": "^0.1.0",
     "iterate-files": "~0.1.1",
-    "re-emitter": "~0.3.0"
+    "re-emitter": "~0.3.0",
+    "yawatch": "~0.2.4"
   },
   "devDependencies": {
     "tape": "~1.0.2"
