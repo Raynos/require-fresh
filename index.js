@@ -5,9 +5,16 @@ var extend = require("util")._extend
 var reemit = require("re-emitter/reemit")
 var yawatch = require("yawatch")
 var iterateFiles = require("iterate-files")
+var readdirSyncRecursive = require("fs-readdir-recursive")
 
 /*
-    requireFresh := ({ dir: String, watch: Boolean })
+    requireFresh := ({
+        dir: String,
+        watch?: Boolean,
+        force?: Boolean
+    }) => require: (String, opts?: {
+        fresh?: Boolean
+    }) => Any
 
     Watch an entire directory and ensure that require's into
         that directory are always fresh. This means that if any
@@ -21,6 +28,7 @@ module.exports = requireFresh
 
 function requireFresh(opts) {
     var directory = opts.dir
+    var force = opts.force
     var watch = opts.watch !== false
     var filesToClear = {}
 
@@ -55,6 +63,13 @@ function requireFresh(opts) {
         })
     }
 
+    if (force) {
+        var files = readdirSyncRecursive(directory);
+        files.forEach(function (filename) {
+            filesToClear[path.join(directory, filename)] = true
+        })
+    }
+
     req.close = function () {
         if (monitor) {
             monitor.destroy()
@@ -63,7 +78,13 @@ function requireFresh(opts) {
 
     return req
 
-    function req(uri) {
+    function req(uri, opts) {
+        opts = opts || {};
+
+        if (opts.fresh) {
+            clearCache()
+        }
+
         return require(path.resolve(directory, uri))
     }
 
